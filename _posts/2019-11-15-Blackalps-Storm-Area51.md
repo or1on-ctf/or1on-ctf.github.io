@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Blackalps 2019 - Storm Area 51
+title: Blackalps 2019 - Storm Area51
 ---
 
-This writeup is about one out of two forensic challenges from the Blackalps 2019 CTF. It is about memory analysis. It's topic is the Area 51 Raid that happened on September 20, 2019.
+This writeup is about one out of two forensic challenges from the Blackalps 2019 CTF. It is about memory analysis and identifying certain processes and files in order to extract them. A password protected PDF requires the cracking of a KeePass database. The szenario is based on the Area51 Raid which happened on September 20, 2019.
 
 <!--more-->
 
@@ -134,8 +134,6 @@ And indeed there is. So lets dump this file and try to get access to it.
 root@kali:~# volatility -f memory.dmp --profile=Win7SP1x86_23418 dumpfiles -D files/ -Q 0x000000001fd7d250
 Volatility Foundation Volatility Framework 2.6
 DataSectionObject 0x1fd7d250   None   \Device\HarddiskVolume2\Users\jean-kevin\Documents\passwords.kdbx
-root@kali:~# file files/file.None.0x84e
-file.None.0x84ec23b8.dat  file.None.0x84eeeb38.dat  
 root@kali:~# file files/file.None.0x84ec23b8.dat 
 files/file.None.0x84ec23b8.dat: Keepass password database 2.x KDBX
 root@kali:~# keepass2john files/file.None.0x84ec23b8.dat > keepass.hash
