@@ -8,8 +8,9 @@ title: HTB Business CTF 2021 - Compromise
 *We are certain that our internal network has been breached and the attacker tries to move laterally. We managed to capture some suspicious traffic and create a memory dump from a compromised server. I hope you are skilled enough to bring this incident to its end.*
 
 *Available Data:*
-        * *capture.pcap (network capture of SSH traffic)*
-        * *dump.mem (memory dump of a suspicious system)*
+
+* *capture.pcap (network capture of SSH traffic)*
+* *dump.mem (memory dump of a suspicious system)*
 
 <!--more-->
 ## Solution
@@ -47,7 +48,7 @@ Kernel Version: 4.15.0-142-generic (buildd@lgw01-amd64-036)
 In order to create the correct version of a volatility profile, a identical (with the same kernel version) system needed to be created. After this, the steps described by [Andrea Fortuna][1]. Once done, volatility could be used as intended.
 
 ### Extract The SSH Session Keys
-In order to extract the SSH session keys from the memory, `fox-it` provides a very useful volatility module ([OpenSSH-Session-Key-Recovery])[2]. Using this module, it was a piece to extract the SSH session keys from the memory dump.
+In order to extract the SSH session keys from the memory, `fox-it` provides a very useful volatility module ([OpenSSH-Session-Key-Recovery][2]). Using this module, it was a piece to extract the SSH session keys from the memory dump.
 
 ```bash
 forensics@siftworkstation: /cases/hackthebox/business_ctf_21/forensics/compromised
@@ -204,6 +205,8 @@ cd /var/tmp
 
 > 
 proc=`grep -c ^processor /proc/cpuinfo`
+
+[...snip...]
 
 ```
 
